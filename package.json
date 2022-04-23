@@ -1,0 +1,64 @@
+{
+  "name": "simple-secrets-bot-telegram",
+  "version": "1.0.0",
+  "description": "Telegram bot for simple secrets manager",
+  "keywords": [
+    "simple",
+    "secrets",
+    "manager",
+    "password",
+    "telegram",
+    "bot",
+    "composer"
+  ],
+  "main": "serverless.js",
+  "scripts": {
+    "start-development-application": "STAGE=development IS_OFFLINE=true sls offline",
+    "start-staging-application": "STAGE=staging IS_OFFLINE=true sls offline",
+    "start-production-application": "STAGE=production IS_OFFLINE=true sls offline",
+    "deploy-development-stack": "STAGE=development IS_OFFLINE=true sls deploy --verbose",
+    "deploy-staging-stack": "STAGE=staging IS_OFFLINE=true sls deploy --verbose",
+    "deploy-production-stack": "STAGE=production IS_OFFLINE=true sls deploy --verbose",
+    "application-info": "STAGE=development IS_OFFLINE=true sls info --verbose"
+  },
+  "homepage": "https://ss.aniname.com",
+  "repository": "github:ANIname/simple-secrets-bot-telegram",
+  "bugs": {
+    "url": "https://ss.aniname.com/support",
+    "email": "support@ss.aniname.com"
+  },
+  "author": {
+    "name": "Vadim Borshchovetskiy",
+    "email": "kiidii@aniname.com",
+    "url": "https://github.com/kiidii"
+  },
+  "contributors": [],
+  "funding": [],
+  "license": "MIT",
+  "engines": {
+    "node": "14.x",
+    "npm": "8.3.1"
+  },
+  "dependencies": {
+    "directory-import": "^2.3.1",
+    "lodash": "^4.17.21",
+    "simple-composer": "^2.1.9"
+  },
+  "devDependencies": {
+    "eslint": "^8.13.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-align-assignments": "^1.1.2",
+    "eslint-plugin-eslint-comments": "^3.2.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsdoc": "^39.2.7",
+    "eslint-plugin-jsonc": "^2.2.1",
+    "eslint-plugin-sonarjs": "^0.13.0",
+    "eslint-plugin-unicorn": "^42.0.0",
+    "serverless": "^3.15.2",
+    "serverless-deployment-bucket": "^1.5.2",
+    "serverless-offline": "^8.7.0",
+    "serverless-plugin-include-dependencies": "^5.0.0",
+    "serverless-plugin-scripts": "^1.0.2",
+    "serverless-stack-output": "^0.2.3"
+  }
+}

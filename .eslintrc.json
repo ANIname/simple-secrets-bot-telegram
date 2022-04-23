@@ -1,0 +1,50 @@
+{
+  "extends": [
+    "airbnb-base",
+    "plugin:eslint-comments/recommended",
+    "plugin:import/recommended",
+    "plugin:jsdoc/recommended",
+    "plugin:jsonc/recommended-with-json",
+    "plugin:sonarjs/recommended",
+    "plugin:unicorn/all"
+  ],
+
+  "ignorePatterns": [".eslintrc.json", "package*.json"],
+
+  "plugins": [
+    "align-assignments",
+    "import",
+    "jsdoc",
+    "sonarjs",
+    "unicorn"
+  ],
+
+  "rules": {
+    "align-assignments/align-assignments": 2,
+    "brace-style": [2, "stroustrup"],
+
+    "jsdoc/check-indentation": 2,
+    "jsdoc/require-hyphen-before-param-description": 2,
+
+    "jsonc/array-bracket-newline": 2,
+    "jsonc/array-bracket-spacing": 2,
+    "jsonc/comma-style": 2,
+    "jsonc/indent": [2, 2],
+    "jsonc/key-name-casing": 2,
+    "jsonc/key-spacing": 2,
+    "jsonc/no-octal-escape": 2,
+    "jsonc/object-curly-newline": 2,
+    "jsonc/sort-array-values": [2, { "order": { "type": "asc" }, "pathPattern": ".*" }],
+    "jsonc/sort-keys": 2,
+
+    "key-spacing": [2, { "align": { "beforeColon": false, "afterColon": true, "on": "value" } }],
+    "max-len": [2, { "code": 120, "ignoreComments": true, "ignorePattern": ".*require.*" }],
+    "no-console": ["error", { "allow": ["info", "warn", "error", "table", "group", "groupEnd"] }],
+    "no-magic-numbers": [2, { "ignore": [0, 1] }],
+    "no-multi-spaces": 0,
+
+    "sonarjs/no-inverted-boolean-check": 2,
+
+    "unicorn/prefer-module": 0
+  }
+}
