@@ -13,6 +13,8 @@
   ],
   "main": "serverless.js",
   "scripts": {
+    "relay-forward-development": "relay forward --bucket telegram-bot-development http://localhost:3000",
+    "relay-forward-staging": "relay forward --bucket telegram-bot-staging http://localhost:3000",
     "start-development-application": "STAGE=development IS_OFFLINE=true sls offline",
     "start-staging-application": "STAGE=staging IS_OFFLINE=true sls offline",
     "start-production-application": "STAGE=production IS_OFFLINE=true sls offline",
