@@ -1,12 +1,16 @@
 const split   = require('lodash/split');
 const toUpper = require('lodash/toUpper');
+const omit    = require('lodash/omit');
+const keys    = require('lodash/keys');
 
-const packageFile       = require('./package.json');
-const awsParameterStore = require('./services/aws/systems-manager/parameter-store');
+const packageFile = require('./package.json');
 
-// Merge with default values
+const consoleTableObject = require('./utils/console-table-object');
+const awsParameterStore  = require('./services/aws/systems-manager/parameter-store');
+
+// Merge with default parameters
 (() => {
-  const defaultValues = {
+  const defaultParameters = {
     STAGE:      'development',
     IS_OFFLINE: 'false',
 
@@ -19,12 +23,14 @@ const awsParameterStore = require('./services/aws/systems-manager/parameter-stor
     AWS_PRODUCTION_REGION:  'eu-central-1',
   };
 
-  process.env = { ...defaultValues, ...process.env };
+  consoleTableObject('⚙️ Default environment variables:', defaultParameters);
+
+  process.env = { ...defaultParameters, ...process.env };
 })();
 
-// Merge with generated default values
+// Merge with generated default parameters
 (() => {
-  const generatedValues = {
+  const generatedParameters = {
     ...process.env,
 
     get AWS_REGION() {
@@ -56,15 +62,19 @@ const awsParameterStore = require('./services/aws/systems-manager/parameter-stor
     },
   };
 
-  process.env = { ...generatedValues, ...process.env };
+  consoleTableObject('⚙️ Generated default environment variables:', omit(generatedParameters, keys(process.env)));
+
+  process.env = { ...generatedParameters, ...process.env };
 })();
 
-// Merge with values from parameterStore
+// Merge with parameters from parameterStore
 (() => {
   const { STAGE, PROJECT_NAME } = process.env;
 
-  const parametersPath           = `/${PROJECT_NAME}/${STAGE}/`;
-  const valuesFromParameterStore = awsParameterStore.cli.getKeyValueParametersByPath(parametersPath);
+  const parametersPath               = `/${PROJECT_NAME}/${STAGE}/`;
+  const parametersFromParameterStore = awsParameterStore.cli.getKeyValueParametersByPath(parametersPath);
 
-  process.env = { ...valuesFromParameterStore, ...process.env };
+  consoleTableObject('⚙️ Parameters from parameter store:', parametersFromParameterStore);
+
+  process.env = { ...parametersFromParameterStore, ...process.env };
 })();
