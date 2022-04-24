@@ -140,7 +140,7 @@ const {
 
 // Resources configuration
 (() => {
-  const config = setIfNotExists(module.exports, 'resources', {}).resources;
+  const config = setIfNotExists(module.exports, 'resources.Resources', {}).resources.Resources;
 
   importDir({ directoryPath: './resources' }, (resourceName, resourcePath, resourceConfig) => {
     const resourceCamelCaseName = camelCase(resourceName);
